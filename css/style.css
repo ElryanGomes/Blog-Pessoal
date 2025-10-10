@@ -1,0 +1,531 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.paginaInicial {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden; 
+}
+
+nav {
+    background-color: rgba(117, 117, 117, 0.15);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+    padding: 10px 0;
+    width: 100%;
+    color: #eee;
+    font-family: sans-serif;
+    font-size: 15px;
+    z-index: 100;
+}
+
+nav div a {
+    text-decoration: none;
+    color: #eee;
+    transition: color 0.3s ease;
+}
+
+nav div a:hover {
+    color: #000000;
+}
+
+.fotoFundo {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.fotoFundo img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+.conteudoEntrada .titulo {
+    position: absolute;
+    top: 26%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 7rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+.conteudoEntrada .conteudo {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.35rem;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    max-width: 400px;
+    text-align: center;
+}
+
+.segundaPagina {
+    width: 95%;
+    height: 500px;
+    margin: 60px auto 60px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    align-items: stretch; 
+}
+
+.blocoImagem1,
+.blocoImagem2 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.blocoImagem1 {
+    height: 60%;
+}
+
+.blocoImagem2 {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    height: 60%;
+}
+
+.blocoImagem1 .img1{
+    position: relative;
+    height: 100%;
+} 
+.blocoImagem2 .img2, 
+.blocoImagem2 .img3 {
+    position: relative;
+    height: 49.5%;
+}
+
+.img1, .img2, .img3 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 7px;
+}
+
+.img2, .img3 {
+    flex: 1;
+}
+
+.img1 img, .img2 img, .img3 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.img1:hover img,
+.img2:hover img,
+.img3:hover img {
+    transform: scale(1.05);
+    filter: brightness(0.6);
+}
+
+.img1 .conteudo,
+.img2 .conteudo,
+.img3 .conteudo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+.img1 .conteudo .titulo{
+    font-size: 2.6rem;
+    margin-bottom: 5px;
+}
+
+.img2 .conteudo .titulo,
+.img3 .conteudo .titulo{
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+
+/* Estado inicial — imagens fora da tela */
+.segundaPagina .img1,
+.segundaPagina .img2,
+.segundaPagina .img3 {
+  opacity: 0;
+  transform: translateX(0);
+  transition: all 1s ease;
+}
+
+.segundaPagina .img1 {
+  transform: translateX(-150px);
+}
+.segundaPagina .img2 {
+  transform: translateX(150px);
+}
+.segundaPagina .img3 {
+  transform: translateY(150px);
+}
+
+/* Quando entram na tela */
+.segundaPagina .img1.show,
+.segundaPagina .img2.show,
+.segundaPagina .img3.show {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+}
+
+/* Atrasos para dar o efeito de encaixe gradual */
+.segundaPagina .img1.show {
+  transition-delay: 0.1s;
+}
+.segundaPagina .img2.show {
+  transition-delay: 0.3s;
+}
+.segundaPagina .img3.show {
+  transition-delay: 0.5s;
+}
+
+
+/* ----------------------------------- */
+
+body {
+  overflow-x: hidden; 
+  overflow-y: auto; 
+}
+
+.container{
+    margin: 0 auto;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+}
+
+.list{
+    height: 100vh;
+    width: 100vh;
+    position: relative;
+}
+
+.list .list-item{
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.list .list-item img{
+    filter: brightness(30%);
+    object-fit: cover;
+    object-position: center;
+}
+
+.list .list-item .content{
+    position: absolute;
+    top: 150px;
+    left: 130px;
+    width: 600px;
+    height: auto;
+    z-index: 2;
+    color: #eee;
+}
+
+.list .list-item .content h1{
+    margin: 10px 0;
+}
+
+.list .list-item .content p{
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.list .list-item .content button{
+    width: 120px;
+    height: 30px;
+    border: none;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1px;
+    transition: 0.8s;
+    cursor: pointer;
+}
+
+.list .list-item .content button:nth-last-child(1){
+    background: none;
+    color: #eee;
+    border: 1px solid #eee;
+}
+
+.list .list-item .content button:nth-last-child(1):hover{
+    background: #eee;
+    color: #111;
+    border: none
+}
+
+.list .list-item .content button:nth-last-child(2):hover{
+    background: none;
+    color: #eee;
+    border: 1px solid #eee;
+}
+
+.thumbs{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    left: 50%;
+    bottom: 3%;
+    z-index: 2;
+    gap: 15px;
+}
+
+.thumbs .thumb-items{
+    width: 110px;
+    height: 150px;
+    position: relative;
+}
+
+.thumbs .thumb-items img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    filter: brightness(80%);
+    transition: 0.5s;
+}
+.thumbs .thumb-items img:hover{
+    filter: brightness(95%); 
+}
+
+.thumbs .thumb-items .content p:nth-child(1){
+    position: absolute;
+    bottom: 23px;
+    left: 10px;
+    color: #eee;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.thumbs .thumb-items .content p:nth-child(2){
+    width: 80px;
+    height: 15px;
+    font-size: 13px;
+    position: absolute;
+    bottom: 8px;
+    left: 10px;
+    color: #eee;
+    cursor: pointer;
+}
+
+.container .buttons{
+    position: absolute;
+    left: 10%;
+    bottom: 8%;
+    z-index: 2; 
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.container .buttons .next,
+.container .buttons .back{
+    width: 29px;
+    height: 35px;
+    background-color: #f1f1f13a;
+    border: none;
+    border-radius: 6px;
+    color: #eee;
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.container .buttons .next:hover,
+.container .buttons .back:hover{
+    background-color: #eeeeee96;
+    color: #111;
+}
+
+/* Movimento Cards */
+
+.container.next .thumb-items {
+    animation: effectMoveNext 0.5s linear 1 forwards
+}
+
+@keyframes effectMoveNext{
+    from {
+        transform: translateX(100px)
+    }
+}
+
+.container.back .thumb-items {
+    animation: effectMoveBack 0.5s linear 1 forwards
+}
+
+@keyframes effectMoveBack{
+    from {
+        transform: translateX(-70px)
+    }
+}
+
+/* Movimento do último card */
+
+.container.back .thumb-items:nth-last-child(1){
+    animation: MoveUltimoCard 0.5s linear 1 forwards
+}
+
+@keyframes MoveUltimoCard {
+    from{
+        width: 0;
+        opacity: 0;
+    }
+}
+
+/* Movimento do primeiro card
+
+.container.next .thumb-items:nth-last-child(1){
+    animation: MovePrimeiroCard 0.7s linear 1 forwards
+}
+
+@keyframes MovePrimeiroCard {
+    to{
+        width: 0;
+        opacity: 0;
+    }
+} */
+
+
+
+.contatoPagina {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.contatoPagina .fotoFundo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.4);
+    transition: transform 0.6s ease;
+}
+
+.contatoPagina .fotoFundo img:hover {
+    transform: scale(1.05);
+}
+
+.contatoPagina .conteudoFim {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    max-width: 600px;
+    width: 90%;
+    padding: 20px;
+    animation: fadeInUp 1s ease forwards;
+}
+
+.conteudoFim{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.contatoPagina .titulo {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+}
+
+.contatoPagina .conteudo {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+}
+
+.formContato {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 0 auto;
+}
+
+.formContato input,
+.formContato textarea {
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+.formContato input:focus,
+.formContato textarea:focus {
+    box-shadow: 0 0 10px #fff;
+}
+
+.formContato textarea {
+    resize: none;
+    height: 120px;
+}
+
+.formContato button {
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: #fff;
+    color: #111;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.4s;
+}
+
+.formContato button:hover {
+    background-color: #ccc;
+    color: #000;
+}
+
+/* Animação suave */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+
